@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Trained model artifacts (large binaries — regenerate with: python main.py train)
+models/*.joblib
+models/*.pkl
+
+# Generated outputs (plots, predictions, report — regenerate with: python main.py train)
+output/plots/
+output/predictions/
+output/report.html
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

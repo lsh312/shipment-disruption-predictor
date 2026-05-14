@@ -1,0 +1,69 @@
+data:
+  raw_path: data/raw/global_supply_chain_risk_2026.csv
+  test_size: 0.2
+  random_state: 42
+
+features:
+  target: Disruption_Occurred
+  base:
+    - Distance_km
+    - Weight_MT
+    - Fuel_Price_Index
+    - Geopolitical_Risk_Score
+    - Carrier_Reliability_Score
+    - Lead_Time_Days
+    - Month
+    - Quarter
+    - Risk_Carrier_Interaction
+    - Distance_per_Day
+    - Heavy_Cargo
+  encode_cols:
+    - Transport_Mode
+    - Product_Category
+    - Weather_Condition
+    - Origin_Port
+    - Destination_Port
+
+models:
+  logistic_regression:
+    max_iter: 1000
+  decision_tree:
+    max_depth: 6
+  random_forest:
+    n_estimators: 200
+    max_depth: 10
+  gradient_boosting:
+    n_estimators: 200
+    max_depth: 5
+    learning_rate: 0.1
+  knn:
+    n_neighbors: 5
+    weights: distance
+
+cv:
+  n_splits: 5
+
+tuning:
+  logistic_regression:
+    param_grid:
+      C: [0.001, 0.01, 0.1, 1, 10, 100]
+      penalty: [l1, l2]
+      solver: [liblinear]
+    scoring: recall
+
+artifacts:
+  models_dir: models
+  best_model_path: models/best_model.joblib
+  scaler_path: models/scaler.joblib
+
+output:
+  dir: output
+  plots_dir: output/plots
+  predictions_path: output/predictions/best_model_predictions.csv
+  all_models_predictions_path: output/predictions/all_models_predictions.csv
+  report_path: output/report.html
+
+plots:
+  dpi: 110
+  style: whitegrid
+  palette: muted
