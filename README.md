@@ -44,14 +44,24 @@ The goal of this restructuring is to make the project reproducible, easy to run 
 ├── configs/config.yaml              # All hyperparameters, paths, Kaggle config
 ├── tests/test_preprocessing.py      # Pytest unit tests
 ├── main.py                          # CLI entry point
-└── requirements.txt
+├── environment.yml                  # Conda environment (recommended)
+└── requirements.txt                 # pip alternative
 ```
 
 ---
 
 ## Quick start
 
-### 1. Install dependencies
+### 1. Set up the environment
+
+**Option A — conda (recommended):**
+
+```bash
+conda env create -f environment.yml
+conda activate shipment-disruption
+```
+
+**Option B — pip + virtualenv:**
 
 ```bash
 pip install -r requirements.txt
