@@ -8,6 +8,16 @@ Binary classification model to predict whether a shipment will experience a disr
 
 ---
 
+## About this repository
+
+This project was originally developed as a group assignment for the Machine Learning II course (MBDS 2026). The work was done in Jupyter notebooks — covering EDA, feature engineering, model training, hyperparameter tuning, and interpretability — and delivered as a written report and presentation.
+
+After the course, the project was converted into a modularized Python repository following MLOps best practices: the notebook logic was extracted into reusable `src/` modules, all hyperparameters were moved to a config file, a CLI entry point was added, and an automated HTML report was introduced. The original exploratory notebook is preserved in `notebooks/` alongside the reports and presentation in `reports/`.
+
+The goal of this restructuring is to make the project reproducible, easy to run end-to-end, and extensible toward a real production system — see the [Production roadmap](#production-roadmap) section for what that would look like.
+
+---
+
 ## Repository structure
 
 ```
