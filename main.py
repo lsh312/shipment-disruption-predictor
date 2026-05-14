@@ -29,6 +29,7 @@ from src.visualization.plots import (
     plot_port_analysis,
 )
 from src.reporting.report import generate_report
+from src.data.ingestion import ensure_data_exists
 
 warnings.filterwarnings('ignore')
 
@@ -70,6 +71,10 @@ def _build_predictions_df(
     return all_df, best_df
 
 
+def cmd_download(config: dict, force: bool = False) -> None:
+    ensure_data_exists(config, force=force)
+
+
 def cmd_train(config: dict) -> None:
     plots_dir = config['output']['plots_dir']
     Path(plots_dir).mkdir(parents=True, exist_ok=True)
@@ -78,6 +83,7 @@ def cmd_train(config: dict) -> None:
 
     # ── 1. Load & preprocess ──────────────────────────────────────────────────
     print('Loading and preprocessing data...')
+    ensure_data_exists(config)
     df_raw = load_data(config['data']['raw_path'])
     df = engineer_features(df_raw)
     df = encode_features(df, config['features']['encode_cols'])
@@ -252,12 +258,17 @@ def main() -> None:
         description='Supply Chain Disruption ML Pipeline'
     )
     parser.add_argument(
-        'command', choices=['train', 'predict', 'eda'],
+        'command', choices=['download', 'train', 'predict', 'eda'],
         help=(
+            'download: fetch dataset from Kaggle | '
             'train: full pipeline + HTML report | '
             'predict: score new data | '
             'eda: EDA plots only'
         ),
+    )
+    parser.add_argument(
+        '--force', action='store_true',
+        help='Force re-download even if the dataset already exists locally',
     )
     parser.add_argument('--config', default='configs/config.yaml')
     parser.add_argument('--input', help='CSV path required for predict')
@@ -265,7 +276,9 @@ def main() -> None:
 
     config = load_config(args.config)
 
-    if args.command == 'train':
+    if args.command == 'download':
+        cmd_download(config, force=args.force)
+    elif args.command == 'train':
         cmd_train(config)
     elif args.command == 'predict':
         if not args.input:

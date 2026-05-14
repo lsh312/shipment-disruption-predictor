@@ -3,6 +3,15 @@ data:
   test_size: 0.2
   random_state: 42
 
+# Kaggle download (used by: python main.py download)
+# Find the slug in the dataset URL: kaggle.com/datasets/<owner>/<dataset-name>
+# The notebook this project is based on:
+#   kaggle.com/code/nudratabbas/modeling-on-global-supply-chain-risk-logistics
+# Open that notebook → click Data (sidebar) → copy the dataset URL slug.
+kaggle:
+  dataset_slug: nudratabbas/modeling-on-global-supply-chain-risk-logistics
+  filename: global_supply_chain_risk_2026.csv
+
 features:
   target: Disruption_Occurred
   base:
