@@ -164,8 +164,8 @@ def cmd_train(config: dict) -> None:
     # ── 5. Save model artifacts ───────────────────────────────────────────────
     joblib.dump(best_model, config['artifacts']['best_model_path'])
     joblib.dump(scaler, config['artifacts']['scaler_path'])
-    print(f'\nSaved model  → {config["artifacts"]["best_model_path"]}')
-    print(f'Saved scaler → {config["artifacts"]["scaler_path"]}')
+    print(f'\nSaved model:  {config["artifacts"]["best_model_path"]}')
+    print(f'Saved scaler: {config["artifacts"]["scaler_path"]}')
 
     # ── 6. Evaluation plots ───────────────────────────────────────────────────
     print('\nGenerating evaluation plots...')
@@ -199,8 +199,8 @@ def cmd_train(config: dict) -> None:
     best_path = config['output']['predictions_path']
     all_preds_df.to_csv(all_path, index=False)
     best_preds_df.to_csv(best_path, index=False)
-    print(f'Saved all-models predictions → {all_path}')
-    print(f'Saved best-model predictions → {best_path}')
+    print(f'Saved all-models predictions: {all_path}')
+    print(f'Saved best-model predictions: {best_path}')
 
     # ── 8. Generate HTML report ───────────────────────────────────────────────
     all_figs = {**eda_figs, **eval_figs}
@@ -244,7 +244,7 @@ def cmd_predict(config: dict, input_path: str) -> None:
     out_df['Disruption_Probability'] = output['probabilities'].round(4)
     out_df.to_csv(pred_path, index=False)
     print(out_df.to_string(index=False))
-    print(f'\nSaved predictions → {pred_path}')
+    print(f'\nSaved predictions: {pred_path}')
 
 
 def cmd_eda(config: dict) -> None:

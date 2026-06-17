@@ -105,7 +105,7 @@ def generate_report(
     dataset_info: dict = None,
 ) -> None:
     """
-    figures: dict mapping section label → matplotlib Figure
+    figures: dict mapping section label: matplotlib Figure
     dataset_info: optional dict with keys 'n_rows', 'n_features', 'class_balance'
     """
     info = dataset_info or {}
@@ -167,4 +167,4 @@ def generate_report(
 
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(html)
-    print(f'Report saved → {output_path}')
+    print(f'Report saved: {output_path}')

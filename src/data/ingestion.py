@@ -4,7 +4,7 @@ present locally.
 
 Setup (one-time):
     1. Create a Kaggle account at kaggle.com
-    2. Go to Account → API → Create New Token → saves kaggle.json
+    2. Go to Account: API: Create New Token: saves kaggle.json
     3. Place kaggle.json at:
           Windows : C:\\Users\\<you>\\.kaggle\\kaggle.json
           Mac/Linux: ~/.kaggle/kaggle.json
@@ -16,7 +16,7 @@ Finding the dataset slug:
     Open the Kaggle dataset page. The URL looks like:
         kaggle.com/datasets/<owner>/<dataset-name>
     The slug is "<owner>/<dataset-name>".
-    Set it in configs/config.yaml → kaggle.dataset_slug.
+    Set it in configs/config.yaml: kaggle.dataset_slug.
 """
 import os
 import shutil
@@ -114,7 +114,7 @@ def download_dataset(
             'in configs/config.yaml match the actual Kaggle dataset.'
         )
 
-    print(f'Dataset saved → {dest_file}')
+    print(f'Dataset saved: {dest_file}')
     return dest_file
 
 
